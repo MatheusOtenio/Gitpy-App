@@ -1,80 +1,167 @@
 # GitHub Account Manager
 
-A desktop application built with Python and CustomTkinter for managing GitHub accounts through the GitHub REST API.
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-brightgreen)
+![Versão](https://img.shields.io/badge/versão-1.0.0-blue)
+![Licença](https://img.shields.io/badge/licença-MIT-green)
 
-## Features
+Uma aplicação desktop desenvolvida em Python com CustomTkinter para gerenciar contas GitHub através da API REST do GitHub.
 
-### 🔐 Authentication
-- Secure GitHub Personal Access Token (PAT) authentication
-- Token masking for security
+## 📋 Índice
 
-### 🎨 User Interface
-- Clean and intuitive CustomTkinter-based GUI
-- Token input field with masking
-- Username and target username fields
-- Functionality dropdown menu
-- Action execution button
-- Scrollable output display
+- [Funcionalidades](#-funcionalidades)
+- [Capturas de Tela](#-capturas-de-tela)
+- [Instalação](#-instalação)
+- [Requisitos de Sistema](#-requisitos-de-sistema)
+- [Como Utilizar](#-como-utilizar)
+- [Token GitHub](#-token-github)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Desenvolvimento](#-desenvolvimento)
+- [Contribuição](#-contribuição)
+- [Aviso de Segurança](#-aviso-de-segurança)
 
-### 🧩 Implemented Features
+## 🚀 Funcionalidades
 
-#### 🟦 Social
-- Follow/Unfollow users
-- List following and followers
-- Automatic unfollow for non-followers
+### 🔐 Autenticação
 
-#### 🟩 Repositories
-- List user repositories
-- Create new repositories
-- Delete repositories
-- Toggle repository visibility
+- Autenticação segura com Token de Acesso Pessoal (PAT) do GitHub
+- Mascaramento do token para segurança adicional
 
-## Download and Installation
+### 🎨 Interface de Usuário
 
-### Option 1: Download Released Version
-1. Download the latest release ZIP from the GitHub Releases page
-2. Extract the ZIP file to your desired location
-3. Double-click GitPy.exe to run the application
+- Interface gráfica limpa e intuitiva baseada em CustomTkinter
+- Modo claro e escuro
+- Navegação por abas para diferentes funcionalidades
 
-### Option 2: Build from Source
-1. Clone the repository
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
+### 👥 Social
+
+- Seguir/Deixar de seguir usuários
+- Listar seguidores e seguindo
+- Deixar de seguir automaticamente usuários que não retribuem o follow
+- Exportar dados sociais em formatos JSON e CSV
+
+### 📁 Repositórios
+
+- Listar repositórios do usuário
+- Buscar repositórios específicos
+- Criar novos repositórios
+- Excluir repositórios existentes
+- Alternar visibilidade entre público e privado
+
+### 📊 Estatísticas
+
+- Visualização gráfica da distribuição de repositórios públicos/privados
+- Contagem total de repositórios
+
+## 📸 Capturas de Tela
+
+![Tela de Autenticação](img/1.png)
+_Tela de autenticação com token do GitHub_
+
+![Gerenciamento Social](img/2.png)
+_Gerenciamento de seguidores e usuários seguidos_
+
+![Visualização de Repositórios](img/3.png)
+_Visualização e gerenciamento de repositórios_
+
+## 💻 Instalação
+
+### Opção 1: Download da Versão Compilada
+
+1. Faça o download do arquivo ZIP mais recente na página de Releases do GitHub
+2. Extraia o arquivo ZIP para o local desejado
+3. Execute o arquivo GitPy.exe
+
+### Opção 2: Instalação via Código-Fonte
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/seu-usuario/github-account-manager.git
+   cd github-account-manager
+   ```
+
+2. Instale as dependências:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Execute a aplicação:
+   ```bash
+   python github_manager_app.py
+   ```
+
+## 🔧 Requisitos de Sistema
+
+- Sistema operacional Windows
+- Microsoft Visual C++ Redistributable (geralmente pré-instalado)
+- Conexão ativa com a internet para acesso à API do GitHub
+- Permissões suficientes para executar aplicações
+
+## 📝 Como Utilizar
+
+1. Inicie a aplicação
+2. Na aba de autenticação, insira seu token de acesso pessoal do GitHub
+3. Clique em "Autenticar"
+4. Navegue pelas abas (Social, Repositórios, Estatísticas) para utilizar as funcionalidades
+
+## 🔑 Token GitHub
+
+Para usar esta aplicação, você precisará de um Token de Acesso Pessoal (PAT) do GitHub:
+
+1. Acesse [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
+2. Clique em "Generate new token"
+3. Selecione os escopos necessários (recomendado: `repo`, `user`)
+4. Gere o token e copie-o
+5. Use o token para autenticar-se na aplicação
+
+**Observação**: O token nunca é armazenado permanentemente pela aplicação.
+
+## 📂 Estrutura do Projeto
+
+```
+github-account-manager/
+├── github_manager_app.py  # Aplicação principal e interface gráfica
+├── github_api.py          # Integração com a API do GitHub
+├── requirements.txt       # Dependências do projeto
+├── create_shortcut.bat    # Script para criar atalho no desktop
+├── img/                   # Pasta com imagens da aplicação
+└── .gitignore            # Arquivos ignorados pelo git
 ```
 
-3. Run the application:
-```bash
-python github_manager_app.py
-```
+## 🛠️ Desenvolvimento
 
-### System Requirements
-- Windows operating system
-- Windows Visual C++ Redistributable (commonly pre-installed)
-- Active internet connection for GitHub API access
-- Sufficient permissions to run executables
+### Compilando o Executável
 
-## Building Executable
+Para criar um executável standalone:
 
-To create a standalone executable:
 ```bash
 pyinstaller --noconfirm --onefile --windowed github_manager_app.py
 ```
 
-## GitHub Token
+Para criar um atalho no desktop após a compilação:
 
-To use this application, you need a GitHub Personal Access Token (PAT):
+```bash
+create_shortcut.bat
+```
 
-1. Go to GitHub Settings > Developer settings > Personal access tokens
-2. Generate a new token with the required permissions
-3. Copy the token and use it to authenticate in the application
+### Principais Dependências
 
-## Development
+- `customtkinter`: Framework para interface gráfica moderna
+- `PyGithub`: Biblioteca para interação com a API do GitHub
+- `matplotlib`: Geração de gráficos estatísticos
+- `pandas`: Manipulação e exportação de dados
 
-The application is structured into modules:
-- `github_manager_app.py`: Main application and GUI
-- `github_api.py`: GitHub API integration and operations
+## 👥 Contribuição
 
-## Security Note
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias.
 
-Never share your Personal Access Token. The application stores the token only in memory during runtime.
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Faça commit das suas alterações (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Faça push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+## 🔒 Aviso de Segurança
+
+Nunca compartilhe seu Token de Acesso Pessoal. A aplicação armazena o token apenas na memória durante a execução e não o salva em nenhum arquivo local.
